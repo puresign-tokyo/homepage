@@ -1,0 +1,1577 @@
+@charset "utf-8";
+
+
+
+/*Google Fontsの読み込み
+---------------------------------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+/*Font Awesomeの読み込み
+---------------------------------------------------------------------------*/
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css");
+
+
+/*CSSカスタムプロパティ（サイト全体を一括管理する為の設定）
+---------------------------------------------------------------------------*/
+:root {
+
+	--base-color: #fff;
+	/*テンプレートの土台となる色（主に背景カラー）*/
+	--base-inverse-color: #89888e;
+	/*上のbase-colorの対となる色（主にテキストカラー）*/
+
+	--primary-color: #8f8dc9;
+	/*テンプレートのメインまたはアクセントカラー*/
+	--primary-inverse-color: #fff;
+	/*上のprimary-colorの対となる色*/
+
+	--content-space: 2rem;
+	/*余白の一括管理用。2rem＝2文字分。*/
+
+}
+
+/*画面幅900px以上の追加指定*/
+@media screen and (min-width:900px) {
+
+	:root {
+
+		--content-space: 4rem;
+		/*余白の一括管理用。4rem＝4文字分。*/
+
+	}
+
+}
+
+/*追加指定ここまで*/
+
+
+/*animation11のキーフレーム設定
+---------------------------------------------------------------------------*/
+@keyframes animation1 {
+	0% {
+		left: -200px;
+	}
+
+	100% {
+		left: 0px;
+	}
+}
+
+
+/*opa1のキーフレーム設定
+---------------------------------------------------------------------------*/
+@keyframes opa1 {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+/*jump1のキーフレーム設定
+---------------------------------------------------------------------------*/
+@keyframes jump1 {
+
+	0%,
+	80%,
+	100% {
+		transform: translateX(-50%) translateY(0);
+	}
+
+	90% {
+		transform: translateX(-50%) translateY(-10px);
+	}
+}
+
+
+/*全体の設定
+---------------------------------------------------------------------------*/
+body * {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	font-size: 13px;
+	/*基準となるフォントサイズ。*/
+}
+
+/*画面幅900px以上の追加指定*/
+@media screen and (min-width:900px) {
+
+	html,
+	body {
+		font-size: 15px;
+		/*基準となるフォントサイズ。*/
+	}
+
+}
+
+/*追加指定ここまで*/
+
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: "Noto Serif JP", "Hiragino Mincho Pro", "ヒラギノ明朝 Pro W3", "HGS明朝E", "ＭＳ Ｐ明朝", "MS PMincho", serif;
+	/*フォント種類（ゴシック）*/
+	font-optical-sizing: auto;
+	font-style: normal;
+	-webkit-text-size-adjust: none;
+	background: var(--base-color);
+	/*背景色。css冒頭のbase-colorを読み込みます。*/
+	color: var(--base-inverse-color);
+	/*文字色。css冒頭のbase-inverse-colorを読み込みます。*/
+	line-height: 2;
+	/*行間*/
+	overflow-x: hidden;
+}
+
+/*リセット*/
+figure {
+	margin: 0;
+}
+
+dd {
+	margin: 0;
+}
+
+nav,
+ul,
+li,
+ol {
+	margin: 0;
+	padding: 0;
+}
+
+nav ul {
+	list-style: none;
+}
+
+/*table全般の設定*/
+table {
+	border-collapse: collapse;
+}
+
+/*画像全般の設定*/
+img {
+	border: none;
+	max-width: 100%;
+	height: auto;
+	vertical-align: middle;
+}
+
+/*videoタグ*/
+video {
+	max-width: 100%;
+}
+
+/*iframeタグ*/
+iframe {
+	width: 100%;
+}
+
+/*他*/
+input {
+	font-size: 1rem;
+}
+
+/*section*/
+section {
+	padding: var(--content-space) 0;
+	/*section内の余白。上下にcss冒頭のcontent-spaceを読み込み、左右は0（ゼロ）*/
+}
+
+
+/*リンクテキスト全般の設定
+---------------------------------------------------------------------------*/
+a {
+	color: inherit;
+	transition: 0.3s;
+	/*hoverまでにかける時間。0.3秒。*/
+}
+
+/*マウスオン時*/
+a:hover {
+	filter: brightness(1.1);
+	/*少しだけ明るくする*/
+}
+
+
+/*コンテナー（サイト全体を囲むブロック）
+---------------------------------------------------------------------------*/
+#container {
+	position: relative;
+	animation: opa1 1s 0.4s both;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	padding: 0 var(--content-space);
+	/*コンテナー内の余白。上下は0（ゼロ）、左右はcss冒頭のcontent-spaceを読み込む。*/
+}
+
+
+/*header（ロゴが入った最上段のブロック）
+---------------------------------------------------------------------------*/
+/*ヘッダーブロック*/
+header {
+	padding: var(--content-space) 0;
+	/*ヘッダー内の余白。上下にcss冒頭のcontent-spaceを読み込み、左右は0（ゼロ）*/
+}
+
+/*画面幅400px以下の追加指定*/
+@media screen and (max-width:400px) {
+
+	/*ヘッダーブロック*/
+	header {
+		padding-top: calc(var(--content-space) + 70px);
+		/*右上ボタンとロゴが重ならないようヘッダー上部の余白に70px上乗せ*/
+	}
+
+}
+
+/*追加指定ここまで*/
+
+
+/*ロゴ*/
+#logo {
+	margin: 0;
+	padding: 0;
+}
+
+#logo img {
+	display: inline-block;
+	width: 250px;
+	/*ロゴの幅*/
+}
+
+
+/*ヘッダー右側の「Online Shop」のボックス
+---------------------------------------------------------------------------*/
+#header-box * {
+	margin: 0;
+	padding: 0;
+}
+
+/*ボックス全体*/
+#header-box {
+	list-style: none;
+	position: fixed;
+	/*スクロールしても常に同じ場所に配置*/
+	z-index: 101;
+	right: 70px;
+	/*右側からの配置場所。ハンバーガーアイコンの幅と合わせておくときれいに並びます。*/
+	top: 0px;
+	/*上からの配置場所。*/
+	height: 70px;
+	/*高さ。ハンバーガーアイコンの高さと合わせておくときれいに並びます。*/
+	display: flex;
+	/*メニューが増えた場合に横並びにする*/
+}
+
+/*メニュー１個あたり*/
+#header-box a {
+	display: flex;
+	text-decoration: none;
+	height: 100%;
+	align-items: center;
+	background: var(--primary-color);
+	/*背景色。css冒頭のprimary-colorを読み込みます。*/
+	color: var(--primary-inverse-color);
+	/*文字色。css冒頭のprimary-inverse-colorを読み込みます。*/
+	padding: 0 2rem;
+	/*上下、左右へのボタン内の余白*/
+}
+
+
+/*mainimg（4枚構成の横スライドショー）
+---------------------------------------------------------------------------*/
+/*h2見出し*/
+#mainimg-box h2 {
+	font-size: 5vw;
+	/*文字サイズ*/
+	line-height: 1.6;
+	/*行間を少し狭く*/
+	font-weight: 200;
+	/*文字の太さ。細く。*/
+	position: relative;
+	/*カギカッコを絶対配置する為に必要な指定*/
+	display: inline-block;
+	padding: 1rem 3rem;
+	/*上下、左右への見出し内の余白。カギカッコとテキストの間のバランスを調整します。*/
+}
+
+/*h2内の色がついた部分（span）*/
+#mainimg-box h2 span {
+	color: var(--primary-color);
+	/*css冒頭のprimary-colorを読み込みます。*/
+}
+
+/*h2見出しのカギカッコ装飾（共通設定）*/
+#mainimg-box h2::before,
+#mainimg-box h2::after {
+	content: "";
+	position: absolute;
+	width: 20px;
+	/*カギカッコの幅。お好みで。*/
+	height: 50px;
+	/*カギカッコの高さ。お好みで。*/
+	border: 1px solid var(--base-inverse-color);
+	/*枠線の幅、線種、varは色の事でcss冒頭で指定しているvase-inverse-colorを読み込みます*/
+
+}
+
+/*h2見出しの最初（左上）のカギカッコの設定*/
+#mainimg-box h2::before {
+	top: 0px;
+	left: 0px;
+	border-right: none;
+	/*右の線は消す*/
+	border-bottom: none;
+	/*下の線は消す*/
+}
+
+/*h2見出しの最後（右下）のカギカッコの設定*/
+#mainimg-box h2::after {
+	bottom: 0px;
+	right: 0px;
+	border-left: none;
+	/*左の線は消す*/
+	border-top: none;
+	/*上の線は消す*/
+}
+
+/*スライドショー全体を囲むブロック*/
+#mainimg {
+	overflow-x: hidden;
+	position: relative;
+	background: linear-gradient(transparent 20%, var(--primary-color) 20%);
+	/*背景グラデーション。上から20%までは透明で、それ以外はcss冒頭のprimary-colorを読み込みます。最後にも20%とする事で境界がくっきりします。これがないとなめらかグラデーションに。*/
+	color: var(--primary-inverse-color);
+	/*文字色。css冒頭のprimary-inverse-colorを読み込みます。*/
+}
+
+/*画像たちを囲むブロック*/
+#mainimg .img {
+	display: flex;
+}
+
+/*画像*/
+#mainimg .img img {
+	padding: 0 1vw;
+	/*上下の余白はなし、左右への余白は画面の1%*/
+}
+
+/*スライド下の英語表記のテキスト*/
+#mainimg .img+p.c {
+	padding: 2rem;
+	/*テキスト内の余白。2文字分。*/
+	font-size: 1.4rem;
+	/*文字サイズ140%*/
+}
+
+/*スライド下の英語テキストに使うフォント。css冒頭のGoogle Fonts（Caveat）用のスタイル*/
+.caveat {
+	font-family: "Caveat", cursive;
+	font-optical-sizing: auto;
+	font-weight: normal;
+	font-style: normal;
+}
+
+/*右から左へ、左から右へ、のアニメーション*/
+#mainimg .rtl,
+#mainimg .ltr {
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+#mainimg .rtl {
+	animation-name: slide-rtl;
+}
+
+#mainimg .ltr {
+	animation-name: slide-ltr;
+}
+
+@keyframes slide-rtl {
+	0% {
+		transform: translateX(0);
+	}
+
+	100% {
+		transform: translateX(-50%);
+	}
+}
+
+@keyframes slide-ltr {
+	0% {
+		transform: translateX(-50%);
+	}
+
+	100% {
+		transform: translateX(0);
+	}
+}
+
+
+/*コンテンツ
+---------------------------------------------------------------------------*/
+/*コンテンツブロック*/
+#contents {
+	flex: 1;
+}
+
+/*コンテンツ内で使用するul,ol要素（リストタグ）*/
+#contents ul,
+#contents ol {
+	margin-left: 2rem;
+	margin-right: 2rem;
+}
+
+
+/*main
+---------------------------------------------------------------------------*/
+/*h2見出し*/
+main h2 {
+	font-weight: 500;
+	/*太さ。200〜900まで指定可能。大きいほど太くなります。*/
+	font-size: 1.8rem;
+	/*文字サイズ180%。*/
+}
+
+
+/*スライドショー下のテキストメッセージブロック（「素敵なキッチンアイテムや暮らしを彩る雑貨が揃うお店」）
+---------------------------------------------------------------------------*/
+/*p要素に使っています*/
+.message {
+	line-height: 3;
+	/*行間を広くする*/
+}
+
+/*画面幅700px以上の追加指定*/
+@media screen and (min-width:700px) {
+
+	.message {
+		text-align: center;
+		/*中身をセンタリング*/
+	}
+
+}
+
+/*追加指定ここまで*/
+
+
+/*btn5（「今だけ10%OFF　オンラインショップはこちら」ボタン）
+---------------------------------------------------------------------------*/
+.btn5-container {
+	position: relative;
+	margin-top: 40px;
+	/*ふきだしを使う場合に上の要素に食い込んでしまうので、それを回避する*/
+}
+
+a.btn5 {
+	text-decoration: none;
+	display: inline-block;
+	background: linear-gradient(#aba9de, var(--primary-color));
+	/*背景グラデーション。#aba9deからcss冒頭のprimary-colorへかけて色が変化。*/
+	color: #fff;
+	/*文字色*/
+	padding: 1rem 3rem;
+	/*ボタン内の余白。上下、左右へ。*/
+	font-size: 1.3rem;
+	/*文字サイズを130%*/
+	border-radius: 5px;
+	/*角を少しだけ丸くする*/
+}
+
+/*マウスオン時に少しだけ大きく*/
+a.btn5:hover {
+	transform: scale(1.02);
+}
+
+/*ふきだし*/
+.btn5-container .fukidasi {
+	background: #fff;
+	/*背景色*/
+	border: 2px solid var(--primary-color);
+	/*枠線の幅、線種、色*/
+	padding: 0.2rem 2rem;
+	/*ふきだし内の余白。上下、左右へ。*/
+	border-radius: 100px;
+	/*角を丸くする指定。大きめであれば適当でOK。*/
+	position: absolute;
+	top: -30px;
+	/*ふきだしの位置の設定*/
+	left: 50%;
+	transform: translateX(-50%);
+	box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+	/*ふきだしの影。右へ、下へ、ぼかす量、0,0,0は黒色のことで0.2は色が20%出た状態*/
+	animation: jump1 2s infinite;
+	/*ぴょこんと上に移動するアニメーション。動きが不要ならこの１行を削除。*/
+}
+
+/*ふきだしの下の三角形の設定*/
+.btn5-container .fukidasi::before {
+	content: "";
+	position: absolute;
+	bottom: -8px;
+	/*配置場所*/
+	left: 50%;
+	transform: translateX(-50%) rotate(315deg);
+	width: 10px;
+	/*三角形の幅*/
+	height: 10px;
+	/*三角形の高さ*/
+	background: #fff;
+	/*三角形の色*/
+	border-left: 2px solid var(--primary-color);
+	/*枠線の幅、線種、色についてはcss冒頭のprimary-colorを読み込みます。*/
+	border-bottom: 2px solid var(--primary-color);
+	/*枠線の幅、線種、色についてはcss冒頭のprimary-colorを読み込みます。*/
+}
+
+/*角をまんまるにする*/
+.btn5.border-radius {
+	border-radius: 100px;
+}
+
+
+/*「商品ラインナップ」ブロック
+---------------------------------------------------------------------------*/
+.list-grid .list * {
+	margin: 0;
+	padding: 0;
+}
+
+/*ブロック全体を囲むブロック*/
+.list-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	/*2列にする指定。3列にしたければrepeat(3, 1fr)とする。*/
+	gap: 1rem;
+	/*ブロックの間に1文字分のスペースを空ける*/
+}
+
+/*画面幅800px以上の追加指定*/
+@media screen and (min-width:800px) {
+
+	/*ブロック全体を囲むブロック*/
+	.list-grid {
+		grid-template-columns: repeat(4, 1fr);
+		/*4列にする指定。2列にしたければrepeat(2, 1fr)とする。*/
+		gap: 2rem;
+		/*ブロックの間に2文字分のスペースを空ける*/
+	}
+
+}
+
+/*追加指定ここまで*/
+
+
+/*ボックス１個あたり*/
+.list-grid .list {
+	display: grid;
+	position: relative;
+	grid-template-rows: auto 1fr;
+	/*１つ目（この場合はfigure要素のサイズ）は自動に、２つ目（この場合はtextブロック））を残った幅で使う*/
+	overflow: hidden;
+}
+
+/*ボックス内のp要素*/
+.list-grid .list p {
+	font-size: 0.85rem;
+	/*文字サイズを85%に*/
+	line-height: 1.5;
+	/*行間を少し狭く*/
+}
+
+
+/*「商品ラインナップ」ブロックで使っているアイコン（「NEW」や「UP」）
+---------------------------------------------------------------------------*/
+/*共通*/
+.list-grid .icon-bg1,
+.list-grid .icon-bg2 {
+	font-family: "Roboto", sans-serif;
+	font-weight: 600;
+	overflow: hidden;
+	position: absolute;
+	left: 0px;
+	/*左からの配置場所*/
+	top: 0px;
+	/*上からの配置場所*/
+	font-size: 0.85rem;
+	/*文字サイズ。85%*/
+	width: 10rem;
+	/*幅。10文字分*/
+	padding-top: 2rem;
+	/*テキストの上にとる余白。2文字分。*/
+	text-align: center;
+	/*テキストをセンタリング*/
+	transform: rotate(-45deg) translate(-2.4rem, -3rem);
+	/*反時計回りに45度回転、X軸に-2.4文字分、Y軸に-3文字分移動。*/
+	box-shadow: 0px 5px #fff;
+	/*ボックスの影。アイコンと写真の間の境界線として使っています。*/
+}
+
+/*icon-bg1（サンプルだと「NEW」）*/
+.list-grid .icon-bg1 {
+	background: #a84672;
+	/*背景色*/
+	color: #fff;
+	/*文字色*/
+}
+
+/*icon-bg2（サンプルだと「UP」）*/
+.list-grid .icon-bg2 {
+	background: #4946a8;
+	/*背景色*/
+	color: #fff;
+	/*文字色*/
+}
+
+
+/*スライドアップの装飾画像
+---------------------------------------------------------------------------*/
+/*画像ボックス*/
+.bg-slideup {
+	background-image: url("../images/back.jpg");
+	/*背景画像の読み込み*/
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
+	height: 50vh;
+	/*高さ。画面の高さの50%になる設定ですがお好みで。*/
+	border-radius: 0px 15vw 0px 15vw;
+	/*角を丸くする指定。左上、右上、右下、左下への順番。*/
+}
+
+
+/*「お客様の声」ブロック
+---------------------------------------------------------------------------*/
+.list-yoko-scroll * {
+	margin: 0;
+	padding: 0;
+}
+
+/*横スクロールブロック全体*/
+.list-yoko-scroll {
+	display: flex;
+	overflow-x: auto;
+	scrollbar-width: none;
+	/* Firefox用 */
+	scroll-snap-type: x mandatory;
+	/* スナップスクロールを有効にする */
+}
+
+.list-yoko-scroll::-webkit-scrollbar {
+	display: none;
+	/* Chrome, Safari, Edge用 */
+}
+
+/*ブロック内の１個あたり*/
+.list-yoko-scroll .list {
+	width: 60%;
+	/*ブロック１個の幅。お好みで変更して下さい。*/
+	flex-shrink: 0;
+	scroll-snap-align: start;
+	padding: 0 2rem;
+	/*ブロック内の余白。上下は0（ゼロ）、左右に2文字分。*/
+	position: relative;
+	display: flex;
+	flex-direction: column;
+}
+
+/*縦スクロールブロック全体*/
+/* 縦スクロールリスト全体 */
+.list-tate-scroll {
+	display: flex;
+	flex-direction: column;
+	/* 縦方向に並べる */
+	overflow-y: auto;
+	scroll-snap-type: y mandatory;
+	/* 縦スナップ */
+	scrollbar-width: none;
+	/* Firefox用 */
+}
+
+/* スクロールバー非表示（Chrome, Safari, Edge用） */
+.list-tate-scroll::-webkit-scrollbar {
+	display: none;
+}
+
+/* 各ブロック要素 */
+.list-tate-scroll .list {
+	width: 100%;
+	/* 横幅いっぱい */
+	flex-shrink: 0;
+	scroll-snap-align: start;
+	padding: 2rem 1rem;
+	/* 上下に余白を追加、左右は少なめ */
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/* 中央揃え */
+}
+
+/*画面幅600px以上の追加指定*/
+@media screen and (min-width:600px) {
+
+	/*ブロック内の１個あたり*/
+	.list-yoko-scroll .list {
+		width: 28%;
+		/*ブロック１個の幅。お好みで変更して下さい。*/
+	}
+
+}
+
+/*追加指定ここまで*/
+
+
+/*画像*/
+.list-yoko-scroll figure {
+	width: 80px;
+	/*幅。お好みで。*/
+	border-radius: 50%;
+	/*円形にする*/
+	overflow: hidden;
+	margin: 0 auto 1rem;
+}
+
+/*h4見出し*/
+.list-yoko-scroll h4 {
+	text-align: center;
+	/*中央に配置*/
+}
+
+/*テキストブロック*/
+.list-yoko-scroll .text {
+	flex: 1;
+	font-size: 0.85rem;
+	/*文字サイズ85%*/
+	line-height: 1.5;
+	/*行間*/
+}
+
+
+/*２カラムレイアウト用（下のお知らせブロック用で使っています）
+---------------------------------------------------------------------------*/
+.news-c2 * {
+	margin: 0;
+	padding: 0;
+}
+
+/*左側のタイトルブロック*/
+.news-c2 .title {
+	margin-bottom: 2rem;
+	/*下に2文字分のスペースを空ける*/
+	text-align: center;
+	/*テキストをセンタリング*/
+}
+
+/*画面幅600px以上の追加指定*/
+@media screen and (min-width:600px) {
+
+	.news-c2 {
+		display: flex;
+		gap: 2rem;
+	}
+
+	/*左側のタイトルブロック*/
+	.news-c2 .title {
+		margin-bottom: 0;
+		/*マージンのリセット*/
+		text-align: left;
+		/*テキストを左寄せ*/
+		width: 30%;
+		/*ブロックの幅*/
+	}
+
+	/*右側のテキストブロック*/
+	.news-c2 .text {
+		flex: 1;
+	}
+
+}
+
+/*追加指定ここまで*/
+
+
+/*お知らせブロック
+---------------------------------------------------------------------------*/
+/*記事の下に空ける余白*/
+.news dd {
+	padding-bottom: 1rem;
+}
+
+/*ブロック内のspan。日付の横のアイコン的な部分の共通設定*/
+.news dt span {
+	display: inline-block;
+	text-align: center;
+	line-height: 1.8;
+	/*行間（アイコンの高さ）*/
+	padding: 0 1rem;
+	/*上下、左右へのブロック内の余白*/
+	width: 8rem;
+	/*幅。約8文字分。*/
+	transform: scale(0.8);
+	/*80%のサイズに縮小*/
+	background: #fff;
+	/*背景色*/
+	color: #777;
+	/*文字色*/
+	border: 1px solid #999;
+	/*枠線の幅、線種、色*/
+}
+
+/*icon-bg1。サンプルテンプレートでは「重要」と書いてあるマーク*/
+.news .icon-bg1 {
+	border-color: transparent;
+	/*上で設定している線を透明に*/
+	background: #cd0000;
+	/*背景色*/
+	color: #fff;
+	/*文字色*/
+}
+
+/*icon-bg2。サンプルテンプレートでは「サービス」と書いてあるマーク*/
+.news .icon-bg2 {
+	border-color: transparent;
+	/*上で設定している線を透明に*/
+	background: #006acd;
+	/*背景色*/
+	color: #fff;
+	/*文字色*/
+}
+
+/*画面幅700px以上の追加指定*/
+@media screen and (min-width:700px) {
+
+	/*ブロック全体*/
+	.news {
+		display: grid;
+		/*gridを使う指定*/
+		grid-template-columns: auto 1fr;
+		/*横並びの指定。日付とアイコン部分の幅は自動で、内容が入るブロックは残り幅一杯とる。*/
+	}
+
+}
+
+/*追加指定ここまで*/
+
+
+/*list-c2（お問い合わせ、オンラインショップ）
+---------------------------------------------------------------------------*/
+.list-c2>a {
+	text-decoration: none;
+	display: block;
+}
+
+/*画面幅600px以上の追加指定*/
+@media screen and (min-width:600px) {
+
+	/*２つのボックスを囲むボックス*/
+	.list-c2 {
+		display: flex;
+		/*横並びにする*/
+	}
+
+}
+
+/*追加指定ここまで*/
+
+
+/*ボックス１個あたり*/
+.list-c2 .list {
+	text-align: center;
+	position: relative;
+	overflow-y: hidden;
+	color: #fff;
+	/*文字色*/
+	padding: 5rem 2rem;
+	/*上下、左右へのボックス内の余白*/
+	margin: 1rem 0;
+	/*上下、左右へのマージン*/
+}
+
+/*画面幅600px以上の追加指定*/
+@media screen and (min-width:600px) {
+
+	.list-c2>* {
+		flex: 1;
+	}
+
+	.list-c2 .list {
+		margin: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.list-c2>a .list {
+		height: 100%;
+	}
+
+}
+
+/*追加指定ここまで*/
+
+
+/*左側ボックスの背景*/
+.list-c2 .list.image1 {
+	background: url("../images/profile-banner.png") no-repeat center center / cover;
+}
+
+/*右側ボックスの背景*/
+.list-c2 .list.image2 {
+	background: url("../images/link-banner.png") no-repeat center center / cover;
+}
+
+/*h4見出し*/
+.list-c2 h4 {
+	font-weight: 200;
+	/*細字にする*/
+	line-height: 1.2;
+	/*行間を狭く*/
+}
+
+/*h4見出し内のメインテキスト（main-text）*/
+.list-c2 h4 .main-text {
+	display: block;
+	font-size: 3rem;
+	/*文字サイズ。3倍。*/
+	padding-top: 1.5rem;
+	/*上に空ける余白*/
+	padding-bottom: 3rem;
+	/*下に空ける余白*/
+}
+
+/*画面幅600px以上の追加指定*/
+@media screen and (min-width:600px) {
+
+	.list-c2 h4 .main-text {
+		font-size: 4rem;
+		/*文字サイズ。4倍。*/
+	}
+
+}
+
+/*追加指定ここまで*/
+
+
+/*h4見出し内のサブテキスト（sub-text）*/
+.list-c2 h4 .sub-text {
+	position: relative;
+	padding: 0 5rem;
+	/*上下、左右への余白設定ですが、両サイドのラインの配置にも影響します。お好みで。*/
+}
+
+/*h4見出し内のサブテキストの左右のライン*/
+.sub-text::before {
+	left: 0;
+}
+
+.sub-text::after {
+	right: 0;
+}
+
+.list-c2 h4 .sub-text::before,
+.list-c2 h4 .sub-text::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	width: 2rem;
+	/*線の長さ*/
+	border-top: 1px solid #fff;
+	/*ラインの幅、線種、色*/
+}
+
+/*見出しの下の説明テキスト*/
+.list-c2 .list .text {
+	position: relative;
+	z-index: 1;
+	font-size: 0.85rem;
+	/*文字サイズ85%*/
+}
+
+/*マウスオン用のアニメーション*/
+.list-c2 .list::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.6);
+	/*写真に重ねておく半透明の黒い色。0,0,0は黒のことで0.6は色が60%出た状態。*/
+	transition: transform 0.3s 0.1s;
+	/*アニメーションの速度（0.3秒）と待機時間（0.1秒）。*/
+}
+
+.list-c2 .list:hover::before {
+	transform: translateY(100%);
+	/*マウスオンで半透明の黒を枠外へ出す。-100%にすると逆に移動します。*/
+}
+
+
+/*フッター
+---------------------------------------------------------------------------*/
+footer * {
+	margin: 0;
+	padding: 0;
+}
+
+footer ul {
+	list-style: none;
+}
+
+/*ブロック全体*/
+footer {
+	background: #222;
+	/*背景色*/
+	color: #ccc;
+	/*文字色*/
+	padding: var(--content-space);
+	/*フッター内の余白。css冒頭のcontent-spaceを読み込みます。*/
+}
+
+/*フッター内のロゴ画像*/
+footer .logo {
+	width: 300px;
+	/*幅*/
+}
+
+/*ロゴやSNSアイコンが入ったブロック*/
+footer div.footer1 {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	/*このブロック内のボックス同士の間に空ける余白。１文字分。*/
+}
+
+/*マップが入ったブロック*/
+footer div.footer2 {
+	flex: 1;
+}
+
+/*画面700px以上の追加指定*/
+@media screen and (min-width:700px) {
+
+	/*ブロック全体*/
+	footer {
+		display: flex;
+		gap: 2rem;
+		/*ロゴのブロックとメニューのブロックとの間の余白。2文字分。*/
+	}
+
+	/*ロゴやSNSアイコンが入ったブロック*/
+	footer div.footer1 {
+		text-align: left;
+		width: 40%;
+		/*幅。40%。*/
+	}
+
+	/*マップが入ったブロック*/
+	footer div.footer2 {
+		/*margin-bottom: 0;	下の余白をなくす*/
+	}
+
+}
+
+/*追加指定ここまで*/
+
+
+/*SNSアイコン
+---------------------------------------------------------------------------*/
+.sns1 {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	/*アイコン同士のマージン的な要素。１文字分。*/
+}
+
+.sns1 i {
+	font-size: 30px;
+	/*アイコンサイズ*/
+}
+
+
+/*Google Map用（※キッチン雑貨テーマにて使用）
+---------------------------------------------------------------------------*/
+.iframe-box1 {
+	width: 100%;
+	height: 0;
+	padding-top: 56.25% !important;
+	/*マップの高さを増やしたい場合は、ここの数値を上げてみて下さい。*/
+	position: relative;
+	overflow: hidden;
+}
+
+.iframe-box1 iframe {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+}
+
+
+/*フッターメニュー設定（※お取り寄せグルメテーマにて使用）
+---------------------------------------------------------------------------*/
+/*ボックス全体の設定*/
+#footermenu {
+	font-size: 0.85rem;
+	/*文字サイズ85%*/
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+/*ボックス内のリンクテキスト設定*/
+#footermenu a {
+	text-decoration: none;
+	color: inherit;
+	opacity: 0.6;
+	/*透明度。色を60%出す。*/
+}
+
+/*マウスオン時*/
+#footermenu a:hover {
+	opacity: 1;
+	/*透明度。色を100%出す。*/
+}
+
+/*ulタグ（メニューの１列あたり）*/
+#footermenu ul {
+	margin: 0;
+	list-style: none;
+	padding: 0 2px;
+	flex: 1;
+}
+
+/*メニューの見出し(title)*/
+#footermenu .title {
+	font-weight: bold;
+	/*太字にする*/
+	padding-bottom: 5px;
+	/*下に空けるスペース*/
+}
+
+#footermenu li+.title {
+	margin-top: 1.5rem;
+	/*１行の中に2つ目以降の見出しがある場合に、上に少し余白を空ける*/
+}
+
+
+/*著作部分（※意図的に見えなくしたりしないで下さい。規約違反になります。）
+---------------------------------------------------------------------------*/
+.pr * {
+	margin: 0;
+	padding: 0;
+}
+
+.pr a {
+	text-decoration: none;
+	display: block;
+	background: #555;
+	color: #ccc;
+	text-align: right;
+	padding: 0.5rem 1rem;
+	font-size: 0.8rem;
+}
+
+.pr a::before {
+	font-family: "Font Awesome 6 Free";
+	content: "\e2ca";
+	font-weight: bold;
+	margin-right: 0.5em;
+}
+
+
+/*ポップアップ
+---------------------------------------------------------------------------*/
+#popup * {
+	margin: 0;
+	padding: 0;
+}
+
+/*ポップアップウィンドウ*/
+#popup {
+	display: none;
+	font-size: 0.9rem;
+	/*文字サイズ90%*/
+	padding: 1rem 2rem;
+	/*上下、左右の余白*/
+	position: fixed;
+	z-index: 1001;
+	right: 30px;
+	/*右からの配置場所*/
+	bottom: 100px;
+	/*下からの配置場所*/
+	width: 300px;
+	/*ボックスの幅*/
+	background: #fff;
+	/*背景色*/
+	color: #555;
+	/*文字色*/
+	border: 3px solid #333;
+	/*枠線の幅、線種、色*/
+	border-radius: 10px;
+	/*角を丸くする*/
+	overflow: hidden;
+}
+
+/*閉じるボタン*/
+#popup .close-btn {
+	display: block;
+	width: 50px;
+	/*ボタンの幅*/
+	line-height: 50px;
+	/*ボタンの高さ*/
+	text-align: center;
+	position: absolute;
+	right: 0px;
+	/*右からの配置場所*/
+	top: 0px;
+	/*上からの配置場所*/
+	background: #ff0000;
+	/*背景色*/
+	color: #fff;
+	/*文字色*/
+	cursor: pointer;
+}
+
+
+/*３本バー（ハンバーガー）アイコン設定
+---------------------------------------------------------------------------*/
+#menubar_hdr {
+	display: none;
+	/* デフォルトは非表示 */
+	position: fixed;
+	z-index: 101;
+	cursor: pointer;
+	right: 0px;
+	/*右からの配置場所*/
+	top: 0px;
+	/*上からの配置場所*/
+	width: 70px;
+	/*ボタンの幅*/
+	height: 70px;
+	/*ボタンの高さ*/
+	background: #0e211f;
+	/*ボタン色*/
+	transform-origin: right top;
+	transform: scale(1);
+	/*アイコンのサイズ。100%。このテンプレの場合はOnline Shopボタンと揃えてるので、基本、変更しない方がいいです。*/
+}
+
+/*バツ印が出ている時のボタン色*/
+#menubar_hdr.ham {
+	background: #ff0000;
+}
+
+/*ハンバーガーアイコンの線*/
+#menubar_hdr span {
+	display: block;
+	position: absolute;
+	left: 18px;
+	width: 35px;
+	height: 2px;
+	/*線の高さ*/
+	background: #fff;
+	/*線の色*/
+	transition: 0.3s;
+	/*線が切り替わる場合にかける時間。0.3秒。*/
+}
+
+/*以下は基本的に変更しない*/
+#menubar_hdr span:nth-of-type(1) {
+	top: 24px;
+}
+
+#menubar_hdr span:nth-of-type(2) {
+	top: 34px;
+}
+
+#menubar_hdr span:nth-of-type(3) {
+	top: 44px;
+}
+
+/* ハンバーガーメニュー展開時 */
+#menubar_hdr.ham span:nth-of-type(1) {
+	transform: translateY(10px) rotate(-45deg);
+}
+
+#menubar_hdr.ham span:nth-of-type(2) {
+	opacity: 0;
+}
+
+#menubar_hdr.ham span:nth-of-type(3) {
+	transform: translateY(-10px) rotate(45deg);
+}
+
+/*小さな画面での設定*/
+.small-screen #menubar_hdr {
+	display: flex;
+}
+
+
+/*開閉メニュー
+---------------------------------------------------------------------------*/
+/*メニューブロック共通*/
+.small-screen #menubar {
+	animation: animation1 0.2s both;
+	position: fixed;
+	overflow: auto;
+	z-index: 100;
+	right: 0px;
+	top: 0px;
+	width: 70%;
+	/*ブロックの幅。お好みで。*/
+	height: 100%;
+	padding: 100px var(--content-space) 50px;
+	/*ブロック内の余白。上に100px、左右についてはcss冒頭のcontent-spaceを読み込む、下に50px。*/
+	background: var(--primary-color);
+	/*背景色。css冒頭のprimary-colorを読み込みます。*/
+	color: var(--primary-inverse-color);
+	/*文字色。css冒頭のprimary-inverse-colorを読み込みます。*/
+}
+
+.small-screen #menubar {
+	display: none;
+}
+
+/*メニュー１個あたり*/
+.small-screen #menubar a {
+	display: block;
+	text-decoration: none;
+	color: inherit;
+	border: 1px solid #fff;
+	/*枠線の幅、線種、色*/
+	margin-bottom: 1rem;
+	/*下に１文字分のスペースを空ける。メニュー同士の間隔です。*/
+	padding: 1rem 2rem;
+	/*メニュー内の余白。上下に１文字分、左右に２文字分。*/
+}
+
+/*子メニュー（ドロップダウンメニュー）*/
+.small-screen #menubar ul ul a {
+	border: none;
+	padding: 0;
+	margin-left: 3.8rem;
+	/*左に空けるスペース*/
+}
+
+/*ドロップダウンのアイコン*/
+a.ddmenu::before {
+	font-family: "Font Awesome 6 Free";
+	font-weight: bold;
+	content: "\f078";
+	/*このアイコンを使う*/
+	margin-right: 0.3em;
+	/*アイコンとメニューテキストとの間に空けるスペース。0.5文字分。*/
+	transform: scale(0.7);
+	/*アイコンを70%のサイズに*/
+	display: inline-block;
+}
+
+a.ddmenu {
+	cursor: default;
+}
+
+
+/*PAGE TOP（↑）設定
+---------------------------------------------------------------------------*/
+.pagetop-show {
+	display: block;
+}
+
+/*ボタンの設定*/
+.pagetop a {
+	display: block;
+	text-decoration: none;
+	text-align: center;
+	z-index: 99;
+	animation: opa1 1s 0.4s both;
+	position: fixed;
+	/*スクロールに追従しない(固定で表示)為の設定*/
+	right: 20px;
+	/*右からの配置場所指定*/
+	bottom: 50px;
+	/*下からの配置場所指定*/
+	font-size: 1.5rem;
+	/*文字サイズ*/
+	background: var(--primary-color);
+	/*背景色。css冒頭のprimary-colorを読み込みます。*/
+	color: var(--primary-inverse-color);
+	width: 60px;
+	/*幅*/
+	line-height: 60px;
+	/*高さ*/
+	border-radius: 50%;
+	/*円形にする*/
+}
+
+
+/*svgアニメーション（大きな背景ラインアニメーション）
+このcssの他、htmlの一番下の「SVGアニメーション」というブロックで指定があります。
+---------------------------------------------------------------------------*/
+#kazari1 {
+	position: absolute;
+	z-index: -1;
+	left: 0;
+	top: 0;
+	fill: none;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-miterlimit: 10;
+	stroke: #fff;
+	/*これは線の色ではありません。線色はsvg画像を直接編集して下さい。*/
+	stroke-width: 30;
+	/*svgをなぞった際の線幅をここで設定*/
+	width: 100%;
+}
+
+
+/*bg1背景色（「お客様の声」ブロックで使用）
+---------------------------------------------------------------------------*/
+.bg1 {
+	background: var(--primary-color);
+	/*背景色。css冒頭のprimary-colorを読み込みます。*/
+	color: var(--primary-inverse-color);
+	/*文字色。css冒頭のprimary-inverse-colorを読み込みます。*/
+}
+
+
+/*sectionの両サイドの余白を相殺するスタイル
+---------------------------------------------------------------------------*/
+.margin-lr0 {
+	margin: 0 calc(-1 * var(--content-space));
+}
+
+
+/*マニュアルページ用
+---------------------------------------------------------------------------*/
+#manual {
+	background-image: none;
+}
+
+.manual {
+	padding: 5vw;
+}
+
+.manual h2,
+.manual h3 {
+	margin-top: 3rem;
+}
+
+pre {
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+}
+
+
+/*その他
+---------------------------------------------------------------------------*/
+.clearfix::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.color-check,
+.color-check a {
+	color: #ff0000 !important;
+}
+
+.l {
+	text-align: left !important;
+}
+
+.c {
+	text-align: center !important;
+}
+
+.r {
+	text-align: right !important;
+}
+
+.ws {
+	width: 95%;
+	display: block;
+}
+
+.wl {
+	width: 95%;
+	display: block;
+}
+
+.mb0 {
+	margin-bottom: 0px !important;
+}
+
+.mb30 {
+	margin-bottom: 30px !important;
+}
+
+.look {
+	display: inline-block;
+	padding: 0px 10px;
+	background: #eee;
+	border: 1px solid #ccc;
+	color: #888;
+	border-radius: 3px;
+	margin: 5px 0;
+	word-break: break-all;
+}
+
+.small {
+	font-size: 0.75em;
+}
+
+.large {
+	font-size: 2em;
+	letter-spacing: 0.1em;
+}
+
+.pc {
+	display: none;
+}
+
+.dn {
+	display: none !important;
+}
+
+.block {
+	display: block !important;
+}
+
+/*画面幅900px以上の追加指定*/
+@media screen and (min-width:900px) {
+
+	.ws {
+		width: 48%;
+		display: inline;
+	}
+
+	.sh {
+		display: none;
+	}
+
+	.pc {
+		display: block;
+	}
+
+}
+
+/*追加指定ここまで*/
