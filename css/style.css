@@ -526,7 +526,7 @@ a.btn5:hover {
 	width: 10px;
 	/*三角形の幅*/
 	height: 10px;
-	/*三角形の高さ*/
+	/*三角形の高さ*jpg/
 	background: #fff;
 	/*三角形の色*/
 	border-left: 2px solid var(--primary-color);
@@ -707,16 +707,20 @@ a.btn5:hover {
 /* 各ブロック要素 */
 .list-tate-scroll .list {
 	width: 100%;
-	/* 横幅いっぱい */
+	max-width: 600px;
+	/* 最大横幅を設定（任意の値） */
+	margin: 0 auto;
+	/* 中央寄せ */
+	border: 2px solid #ccc;
+	/* 枠線追加 */
+	padding: 2rem 1rem;
 	flex-shrink: 0;
 	scroll-snap-align: start;
-	padding: 2rem 1rem;
-	/* 上下に余白を追加、左右は少なめ */
 	position: relative;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	/* 中央揃え */
+	margin-bottom: 1rem;
 }
 
 /*画面幅600px以上の追加指定*/
